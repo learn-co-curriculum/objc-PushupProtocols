@@ -54,9 +54,10 @@
 
 - (IBAction)saveWorkoutTapped:(UIButton *)sender {
     
-    FISWorkout *workout = [[FISWorkout alloc] initWithReps:@([self.numberOfExerciseTextField.text integerValue]) sets:@([self.numberOfSetsTextField.text integerValue]) numberOfWorkoutBuddies:@([self.numberOfStudentsTextField.text integerValue]) timeStamp:self.datePicker.date];
+    FISExercise *exercise = self.exercises[[self.exerciseTableView indexPathForSelectedRow].row];
 
-    workout.exercise = self.exercises[[self.exerciseTableView indexPathForSelectedRow].row];
+    FISWorkout *workout = [[FISWorkout alloc] initWithExercise:exercise reps:@([self.numberOfExerciseTextField.text integerValue]) sets:@([self.numberOfSetsTextField.text integerValue]) numberOfWorkoutBuddies:@([self.numberOfStudentsTextField.text integerValue]) timeStamp:self.datePicker.date];
+
     [self.exercises removeObjectAtIndex:0];
     ((StatsViewController *)self.delegate).exercises = self.exercises ;
     [self.delegate addNewWorkout:workout];
