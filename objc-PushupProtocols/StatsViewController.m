@@ -123,6 +123,24 @@
     return _workoutsOfSelectedExercise;
 }
 
+-(void)addNewWorkout:(FISWorkout *)workout {
+    [self.workouts addObject:workout];
+    [self updateUI];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    AddEntryViewController *addEntryVC = [segue destinationViewController];
+    addEntryVC.delegate = self;
+    [self.exercises insertObject:@"Add New Exercise" atIndex:0];
+    addEntryVC.exercises = self.exercises;
+    
+}
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     return ((FISExercise *)self.exercises[row]).name;

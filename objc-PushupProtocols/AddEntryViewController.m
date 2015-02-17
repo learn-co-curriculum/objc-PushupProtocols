@@ -13,7 +13,6 @@
 @interface AddEntryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *exerciseTableView;
-@property (strong, nonatomic) NSMutableArray *exercises;
 
 @end
 
@@ -51,8 +50,36 @@
     return YES;
 }
 
+- (IBAction)saveWorkoutTapped:(UIButton *)sender {
+    
+    FISWorkout *workout = [[FISWorkout alloc] initWithReps:@([self.numberOfExerciseTextField.text integerValue]) sets:@([self.numberOfSetsTextField.text integerValue]) numberOfWorkoutBuddies:@([self.numberOfStudentsTextField.text integerValue]) timeStamp:self.datePicker.date];
+
+    workout.exercise = self.exercises[[self.exerciseTableView indexPathForSelectedRow].row];
+    [self.exercises removeObjectAtIndex:0];
+    ((StatsViewController *)self.delegate).exercises = self.exercises ;
+    [self.delegate addNewWorkout:workout];
+    
+}
+
+- (IBAction)cancelTapped:(UIButton *)sender {
+    [self.exercises removeObjectAtIndex:0];
+    ((StatsViewController *)self.delegate).exercises = self.exercises ;
+    [self.delegate cancel];
+}
+
 -(void)updateUI {
     [self.exerciseTableView reloadData];
+}
+
+-(void)addNewExercise:(FISExercise *)exercise {
+    
+    [self.exercises insertObject:exercise atIndex:1];
+    [self updateUI];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)cancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -86,6 +113,12 @@
     }
     
     return cell;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    AddExerciseViewController *addExerciseVC = segue.destinationViewController;
+    addExerciseVC.delegate = self;
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {

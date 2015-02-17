@@ -7,15 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
-
 @class FISExercise;
+
+@protocol ExerciseProtocol <NSObject>
+
+- (void)addNewExercise:(FISExercise *)exercise;
+- (void)cancel;
+
+@end
 
 
 @interface AddExerciseViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
+- (IBAction)newExerciseTapped:(UIButton *)sender;
+
 @property (weak, nonatomic) IBOutlet UIPickerView *exercisePicker;
 @property (weak, nonatomic) IBOutlet UITextField *exerciseName;
+@property (weak, nonatomic) id<ExerciseProtocol> delegate;
 
 @end

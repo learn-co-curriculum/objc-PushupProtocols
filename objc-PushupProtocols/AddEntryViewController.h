@@ -12,11 +12,22 @@
 @class FISWorkout;
 #import "AddExerciseViewController.h"
 
-@interface AddEntryViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@protocol WorkoutProtocol <NSObject>
+
+-(void)addNewWorkout:(FISWorkout *)workout;
+-(void)cancel;
+
+@end
+
+@interface AddEntryViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, ExerciseProtocol>
+
+@property (weak) id <WorkoutProtocol> delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *numberOfExerciseTextField;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfSetsTextField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UITextField *numberOfStudentsTextField;
+
+@property (strong, nonatomic) NSMutableArray *exercises;
 
 @end

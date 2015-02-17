@@ -48,6 +48,17 @@
 }
 */
 
+- (IBAction)newExerciseTapped:(UIButton *)sender {
+    
+    NSUInteger selectedRow = [self.exercisePicker selectedRowInComponent:0];
+    FISExercise *newExercise = [[FISExercise alloc] initWithName:self.exerciseName.text];
+    [newExercise.muscleGroups addObject:[self.muscleGroups objectAtIndex:selectedRow]];
+    [self.delegate addNewExercise:newExercise ];
+}
+
+- (IBAction)cancelTapped:(UIButton *)sender {
+    [self.delegate cancel];
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
