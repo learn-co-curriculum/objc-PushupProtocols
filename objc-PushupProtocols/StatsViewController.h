@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddEntryViewController.h"
 
 @interface StatsViewController : UIViewController <WorkoutProtocol, UIPickerViewDataSource, UIPickerViewDelegate>
 

@@ -10,6 +10,7 @@
 
 @class StatsViewController;
 @class FISWorkout;
+#import "AddExerciseViewController.h"
 
 @protocol WorkoutProtocol <NSObject>
 
