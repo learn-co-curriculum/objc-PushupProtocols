@@ -16,7 +16,6 @@
 
 @end
 
-
 @interface AddExerciseViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 - (IBAction)newExerciseTapped:(UIButton *)sender;
