@@ -1,7 +1,4 @@
----
-  tags: custom protocol, key value collection operators
-  languages: objc
----
+
 
 Pushup Protocols
 =======
