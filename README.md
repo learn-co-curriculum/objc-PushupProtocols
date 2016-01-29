@@ -26,4 +26,4 @@ Pushup Protocols
 - There are a couple of errors that the fellow programmer has left in the program that you may want to deal with along the way that have nothing to do with custom delegate / protocols. However, none of them are required to be fixed to make the program work under "ideal" conditions.
 
 - Also, don't forget to take a look at how the methods to get the statistics work! While we won't lecture on KVC Collection Operators, they can be quite a nice quick win!
-<a href='https://learn.co/lessons/objc-PushupProtocols' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/objc-PushupProtocols' title='Pushup Protocols'>Pushup Protocols</a> on Learn.co and start learning to code for free.</p>
